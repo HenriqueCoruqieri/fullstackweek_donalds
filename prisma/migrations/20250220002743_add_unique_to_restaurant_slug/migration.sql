@@ -1,9 +1,9 @@
--- DropForeignKey
-ALTER TABLE "MenuCategory" DROP CONSTRAINT "MenuCategory_restaurantID_fkey";
+/*
+  Warnings:
 
--- DropForeignKey
-ALTER TABLE "Order" DROP CONSTRAINT "Order_restaurantsId_fkey";
+  - A unique constraint covering the columns `[slug]` on the table `Restaurant` will be added. If there are existing duplicate values, this will fail.
 
+*/
 -- DropForeignKey
 ALTER TABLE "OrderProduct" DROP CONSTRAINT "OrderProduct_orderId_fkey";
 
@@ -16,17 +16,14 @@ ALTER TABLE "Product" DROP CONSTRAINT "Product_menuCategoryId_fkey";
 -- DropForeignKey
 ALTER TABLE "Product" DROP CONSTRAINT "Product_restaurantId_fkey";
 
--- AddForeignKey
-ALTER TABLE "MenuCategory" ADD CONSTRAINT "MenuCategory_restaurantID_fkey" FOREIGN KEY ("restaurantID") REFERENCES "Restaurant"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+-- CreateIndex
+CREATE UNIQUE INDEX "Restaurant_slug_key" ON "Restaurant"("slug");
 
 -- AddForeignKey
 ALTER TABLE "Product" ADD CONSTRAINT "Product_restaurantId_fkey" FOREIGN KEY ("restaurantId") REFERENCES "Restaurant"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Product" ADD CONSTRAINT "Product_menuCategoryId_fkey" FOREIGN KEY ("menuCategoryId") REFERENCES "MenuCategory"("id") ON DELETE CASCADE ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "Order" ADD CONSTRAINT "Order_restaurantsId_fkey" FOREIGN KEY ("restaurantsId") REFERENCES "Restaurant"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "OrderProduct" ADD CONSTRAINT "OrderProduct_productId_fkey" FOREIGN KEY ("productId") REFERENCES "Product"("id") ON DELETE CASCADE ON UPDATE CASCADE;
