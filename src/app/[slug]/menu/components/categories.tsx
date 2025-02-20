@@ -19,48 +19,53 @@ interface RestaurantCategoriesProps {
 }
 
 type menuCategoriesWhithProducts = Prisma.MenuCategoryGetPayload<{
-    include: {products: true};
-}>
+  include: { products: true };
+}>;
 
 const RestaurantCategories = ({ restaurant }: RestaurantCategoriesProps) => {
-    const [selectedCategory, setSelectedCategory] = useState<menuCategoriesWhithProducts>(restaurant.menuCategories[0])
-    
-    const handleCategoryClick = (category: menuCategoriesWhithProducts) => {
-        setSelectedCategory(category)
-    }
+  const [selectedCategory, setSelectedCategory] =
+    useState<menuCategoriesWhithProducts>(restaurant.menuCategories[0]);
 
-    const getCategoryButtonVariant = (category: menuCategoriesWhithProducts) => {
-        return selectedCategory.id == category.id ? "default" : "secondary"
-    }
-    
-    return (
+  const handleCategoryClick = (category: menuCategoriesWhithProducts) => {
+    setSelectedCategory(category);
+  };
+
+  const getCategoryButtonVariant = (category: menuCategoriesWhithProducts) => {
+    return selectedCategory.id == category.id ? "default" : "secondary";
+  };
+
+  return (
     <div className="relative z-50 mt-[-1.5rem] rounded-t-3x1 bg-white">
       <div className="p-5">
         <div className="flex items-center gap-3">
-            <Image
+          <Image
             src={restaurant.avatarImageUrl}
             alt={restaurant.name}
             height={45}
             width={45}
-            />
-            <div>
+          />
+          <div>
             <h2 className="font-semibold text-lg">{restaurant.name}</h2>
             <p className="text-xs opacity-55">{restaurant.description}</p>
-            </div>
+          </div>
         </div>
         <div className="flex items-center gap-1 text-xs text-green-500 mt-3">
-            <ClockIcon />
-            <p>Aberto</p>
+          <ClockIcon />
+          <p>Aberto</p>
         </div>
-    </div>
+      </div>
 
       <ScrollArea className="w-full">
         <div className="flex w-max space-x-4 p-4 pt-0">
           {restaurant.menuCategories.map((category) => (
-            <Button onClick={() => handleCategoryClick(category)} key={category.id} variant={
-                getCategoryButtonVariant(category)
-            } size="sm" className="rounded-full">
-                {category.name}
+            <Button
+              onClick={() => handleCategoryClick(category)}
+              key={category.id}
+              variant={getCategoryButtonVariant(category)}
+              size="sm"
+              className="rounded-full"
+            >
+              {category.name}
             </Button>
           ))}
         </div>
