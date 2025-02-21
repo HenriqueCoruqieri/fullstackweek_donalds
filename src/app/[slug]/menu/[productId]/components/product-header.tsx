@@ -15,6 +15,7 @@ const ProductHeader = ({ product }: ProductHeaderProps) => {
   const router = useRouter();
   const handleBackClick = () => router.back();
   return (
+    /* Foto do produto e botões superiores */
     <div className="relative w-full h-[300px]">
       <Button
         variant="secondary"
