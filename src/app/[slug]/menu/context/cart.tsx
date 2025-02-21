@@ -4,28 +4,35 @@ import { Product } from "@prisma/client";
 import { isPageStatic } from "next/dist/build/utils";
 import { createContext, ReactNode, useState } from "react";
 
-interface CardProduct extends Product {
+interface CartProduct
+  extends Pick<Product, "id" | "name" | "price" | "imageUrl"> {
   quantity: number;
 }
 
 export interface ICartContext {
   isOpen: boolean;
-  products: [];
+  products: CartProduct[];
   toggleCart: () => void;
+  addProduct: (product: CartProduct) => void;
 }
 
 export const CartContext = createContext<ICartContext>({
   isOpen: false,
   products: [],
   toggleCart: () => {},
+  addProduct: () => {},
 });
 
 export const CartProvider = ({ children }: { children: ReactNode }) => {
-  const [products, setProducts] = useState<CardProduct[]>([]);
+  const [products, setProducts] = useState<CartProduct[]>([]);
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const toggleCart = () => {
     setIsOpen((prev) => !prev);
+  };
+
+  const addProduct = (product: CartProduct) => {
+    setProducts((prev) => [...prev, product]);
   };
 
   return (
@@ -34,6 +41,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
         isOpen,
         products,
         toggleCart,
+        addProduct,
       }}
     >
       {children}
