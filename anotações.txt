@@ -1,0 +1,7 @@
+Anotações sobre Server Components
+
+// Server components - renderizados no servidor
+// Podem ser async
+// Podem chamar recursos do back-end (banco de dados)
+// não pode usar hooks
+// não pode usar eventos
