@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { CartContext, CartProduct } from "../../context/cart";
+import { CartContext, CartProduct } from "../context/cart";
 import { formatCurrency } from "@/helpers/format-currency";
 import { Button } from "@/components/ui/button";
 import { ChevronLeftIcon, ChevronRightIcon, TrashIcon } from "lucide-react";

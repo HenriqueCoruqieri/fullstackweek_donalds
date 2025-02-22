@@ -13,7 +13,7 @@ import {
 import Image from "next/image";
 import { useContext, useState } from "react";
 import { CartContext } from "../../context/cart";
-import CartSheet from "./cart-sheet";
+import CartSheet from "../../components/cart-sheet";
 
 interface ProductDetailsProps {
   product: Prisma.ProductGetPayload<{

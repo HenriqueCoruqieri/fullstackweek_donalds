@@ -12,6 +12,7 @@ export interface CartProduct
 export interface ICartContext {
   isOpen: boolean;
   products: CartProduct[];
+  total: number;
   toggleCart: () => void;
   addProduct: (product: CartProduct) => void;
   decreaseProductQuantity: (productId: string) => void;
@@ -20,6 +21,7 @@ export interface ICartContext {
 }
 
 export const CartContext = createContext<ICartContext>({
+  total: 0,
   isOpen: false,
   products: [],
   toggleCart: () => {},
@@ -33,6 +35,9 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
   const [products, setProducts] = useState<CartProduct[]>([]);
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
+  const total = products.reduce((acc, product) => {
+    return acc + product.price * product.quantity;
+  }, 0);
   const toggleCart = () => {
     setIsOpen((prev) => !prev);
   };
@@ -100,6 +105,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
         decreaseProductQuantity,
         increaseProductQuantity,
         removeProduct,
+        total,
       }}
     >
       {children}
