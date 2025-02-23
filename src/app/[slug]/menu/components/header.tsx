@@ -12,7 +12,7 @@ interface RestaurantHeaderProps {
 }
 
 const RestaurantHeader = ({ restaurant }: RestaurantHeaderProps) => {
-  const { slug } = useParams<{ slug: string }>;
+  const { slug } = useParams<{ slug: string }>();
   const router = useRouter();
   const handleBackClick = () => router.back();
   const handleOrdersClick = () => router.push(`/${slug}/orders`);

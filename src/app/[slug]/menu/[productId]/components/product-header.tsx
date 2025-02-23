@@ -12,7 +12,7 @@ interface ProductHeaderProps {
 }
 
 const ProductHeader = ({ product }: ProductHeaderProps) => {
-  const { slug } = useParams<{ slug: string }>;
+  const { slug } = useParams<{ slug: string }>();
   const router = useRouter();
   const handleBackClick = () => router.back();
   const handleOrdersClick = () => router.push(`/${slug}/orders`);
