@@ -1,7 +1,7 @@
 "use client";
 
 import { z } from "zod";
-import { isValidCpf, removeCpfPunctuation } from "../menu/helpers/cpf";
+import { isValidCpf, removeCpfPunctuation } from "../../menu/helpers/cpf";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
@@ -48,9 +48,8 @@ const CpfForm = () => {
 
   const router = useRouter();
   const pathname = usePathname();
-
   const onSubmit = (data: FormSchema) => {
-    router.push(`${pathname}?cpf=${removeCpfPunctuation(data.cpf)}`);
+    router.replace(`${pathname}?cpf=${removeCpfPunctuation(data.cpf)}`);
   };
 
   const handleCancel = () => {
