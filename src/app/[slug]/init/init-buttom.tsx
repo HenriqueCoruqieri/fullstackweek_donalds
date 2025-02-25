@@ -14,7 +14,7 @@ const InitButtom = ({}: InitProps) => {
 
   const handleClick = async () => {
     startTransition(true);
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+    await new Promise((resolve) => setTimeout(resolve, 2000));
     startTransition(false);
     clickToLogin.push(`http://localhost:3000/fsw-donalds`);
   };

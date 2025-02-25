@@ -28,9 +28,8 @@ const HomePage = async ({ params }: HomePageProps) => {
         <div className="relative items-center justify-center gap-2 pt-10">
           {/*Texto*/}
           <p className="opacity-55 text-center mt-3">
-            Pelo aplicativo você poderá realizar seus pedidos para delivery ou
-            retirada de um jeito rápido e prático, e podendo concorrer a
-            sorteios e brindes especiais.
+            Descubra o sabor que faz parte da sua história cada mordida é uma
+            lembrança deliciosa que guardamos em nossa memória!
           </p>
         </div>
         {/*Botão Iniciar*/}
